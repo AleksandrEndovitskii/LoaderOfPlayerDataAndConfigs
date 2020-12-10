@@ -1,6 +1,7 @@
-using Models;
+﻿using Models;
 using Services;
 using Services.Configs;
+using Services.PlayerData;
 using Zenject;
 
 namespace Installers
@@ -12,6 +13,7 @@ namespace Installers
             Container.BindInterfacesAndSelfTo<TestModel>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<ConfigsLoadingService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerDataLoadingService>().AsSingle();
         }
     }
 }
