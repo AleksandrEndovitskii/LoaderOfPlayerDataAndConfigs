@@ -1,4 +1,6 @@
-﻿using Models;
+using Models;
+using Services;
+using Services.Configs;
 using Zenject;
 
 namespace Installers
@@ -8,6 +10,8 @@ namespace Installers
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<TestModel>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<ConfigsLoadingService>().AsSingle();
         }
     }
 }
