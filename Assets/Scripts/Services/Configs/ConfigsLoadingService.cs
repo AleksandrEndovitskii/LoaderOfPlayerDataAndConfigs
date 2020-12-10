@@ -2,6 +2,9 @@
 {
     public class ConfigsLoadingService : IConfigsLoadingService
     {
-        
+        public void Load()
+        {
+
+        }
     }
 }

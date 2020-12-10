@@ -1,6 +1,8 @@
-﻿namespace Services.PlayerData
+﻿using Services.Utils;
+
+namespace Services.PlayerData
 {
-    public interface IPlayerDataLoadingService
+    public interface IPlayerDataLoadingService : ILoader
     {
     }
 }

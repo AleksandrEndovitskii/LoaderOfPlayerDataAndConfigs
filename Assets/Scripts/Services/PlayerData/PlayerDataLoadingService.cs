@@ -2,5 +2,9 @@
 {
     public class PlayerDataLoadingService : IPlayerDataLoadingService
     {
+        public void Load()
+        {
+
+        }
     }
 }

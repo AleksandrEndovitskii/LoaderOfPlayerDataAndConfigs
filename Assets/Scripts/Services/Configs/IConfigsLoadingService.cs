@@ -1,6 +1,8 @@
-﻿namespace Services.Configs
+﻿using Services.Utils;
+
+namespace Services.Configs
 {
-    public interface IConfigsLoadingService
+    public interface IConfigsLoadingService : ILoader
     {
     }
 }
