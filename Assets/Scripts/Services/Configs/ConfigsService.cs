@@ -9,9 +9,6 @@ namespace Services.Configs
     {
         public ReactiveProperty<ConfigModel> ConfigModel => new ReactiveProperty<ConfigModel>();
 
-        [Inject]
-        private ConfigsLoadingService _configsLoadingService;
-
         public void Initialize()
         {
             Debug.Log($"Configs service initialization started");
@@ -20,8 +17,6 @@ namespace Services.Configs
             {
                 Debug.Log($"Config model changed");
             });
-
-            ConfigModel.Value = _configsLoadingService.Load();
 
             Debug.Log($"Configs service initialization finished");
         }
