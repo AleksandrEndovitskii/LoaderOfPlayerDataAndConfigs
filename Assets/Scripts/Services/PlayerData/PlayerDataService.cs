@@ -5,13 +5,16 @@ using Zenject;
 
 namespace Services.PlayerData
 {
-    public class PlayerDataService : IInitializable
+    public class PlayerDataService
     {
-        public ReactiveProperty<PlayerDataModel> PlayerDataModel => new ReactiveProperty<PlayerDataModel>();
+        public ReactiveProperty<PlayerDataModel> PlayerDataModel { get; private set; }
 
-        public void Initialize()
+        [Inject]
+        public void Construct()
         {
             Debug.Log($"Player data service initialization started");
+
+            PlayerDataModel = new ReactiveProperty<PlayerDataModel>();
 
             PlayerDataModel.Subscribe(playerDataModel =>
             {

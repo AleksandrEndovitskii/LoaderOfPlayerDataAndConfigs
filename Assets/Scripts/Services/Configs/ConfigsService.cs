@@ -5,13 +5,16 @@ using Zenject;
 
 namespace Services.Configs
 {
-    public class ConfigsService : IInitializable
+    public class ConfigsService
     {
-        public ReactiveProperty<ConfigModel> ConfigModel => new ReactiveProperty<ConfigModel>();
+        public ReactiveProperty<ConfigModel> ConfigModel { get; private set; }
 
-        public void Initialize()
+        [Inject]
+        public void Construct()
         {
             Debug.Log($"Configs service initialization started");
+
+            ConfigModel = new ReactiveProperty<ConfigModel>();
 
             ConfigModel.Subscribe(configModel =>
             {
