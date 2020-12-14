@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JsonObjects;
 using UniRx;
 
 namespace Models.Configs
@@ -14,6 +15,12 @@ namespace Models.Configs
             PlayerMaxLevel = new ReactiveProperty<int>(playerMaxLevel);
             QuestIds = new ReactiveCollection<string>(questIds);
             ShopItemIds = new ReactiveCollection<string>(shopItemIds);
+        }
+
+        public ConfigModel(ConfigsJsonObject configsJsonObject) :
+            this(configsJsonObject.PlayerMaxLevel, configsJsonObject.QuestIds, configsJsonObject.ShopItemIds)
+        {
+
         }
     }
 }

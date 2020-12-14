@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using JsonObjects;
 using Models.Configs;
+using Newtonsoft.Json;
+using UnityEngine;
 using Zenject;
 
 namespace Services.Configs
@@ -11,7 +13,14 @@ namespace Services.Configs
 
         public void Load()
         {
-            var configModel = new ConfigModel(0, new List<string>(), new List<string>());
+            Debug.Log($"Configs loading started");
+
+            var configsTextAsset = Resources.Load<TextAsset>("Configs");
+            var jsonString = configsTextAsset.text;
+            var configsJsonObject = JsonConvert.DeserializeObject<ConfigsJsonObject>(jsonString);
+            var configModel = new ConfigModel(configsJsonObject);
+
+            Debug.Log($"Configs loading finished");
 
             _configsService.ConfigModel.Value = configModel;
         }
