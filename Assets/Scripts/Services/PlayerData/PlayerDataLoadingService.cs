@@ -1,4 +1,5 @@
 ﻿using Models.PlayerData;
+using UnityEngine;
 using Zenject;
 
 namespace Services.PlayerData
@@ -10,7 +11,12 @@ namespace Services.PlayerData
 
         public void Load()
         {
-            var playerDataModel = new PlayerDataModel(0, 0, 0);
+            var defaultPlayerDataModel = new PlayerDataModel(1, 1, 1);
+
+            var id = PlayerPrefs.GetInt("Id", defaultPlayerDataModel.Id.Value);
+            var currentLevel = PlayerPrefs.GetInt("CurrentLevel", defaultPlayerDataModel.CurrentLevel.Value);
+            var moneyAmount = PlayerPrefs.GetInt("MoneyAmount", defaultPlayerDataModel.MoneyAmount.Value);
+            var playerDataModel = new PlayerDataModel(id, currentLevel, moneyAmount);
 
             _playerDataService.PlayerDataModel.Value = playerDataModel;
         }
