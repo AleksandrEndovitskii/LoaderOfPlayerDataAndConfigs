@@ -11,7 +11,7 @@ namespace Components.Configs
     {
 #pragma warning disable 0649
         [SerializeField]
-        private KeyValueComponent keyValueComponentPrefab;
+        private PropertyInfoComponent propertyInfoComponentPrefab;
 #pragma warning restore 0649
 
         [Inject]
@@ -36,9 +36,11 @@ namespace Components.Configs
                 var propertyInfos = playerDataModel.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
                 foreach (var propertyInfo in propertyInfos)
                 {
-                    var keyValueComponentInstance =  _container.InstantiatePrefab(keyValueComponentPrefab, this.gameObject.transform).GetComponent<KeyValueComponent>();
-                    keyValueComponentInstance.Key = propertyInfo.Name;
-                    keyValueComponentInstance.Value = propertyInfo.GetValue(playerDataModel).ToString();
+                    var propertyInfoComponent =  _container.InstantiatePrefab(
+                        propertyInfoComponentPrefab,
+                        this.gameObject.transform).GetComponent<PropertyInfoComponent>();
+                    propertyInfoComponent.Object = playerDataModel;
+                    propertyInfoComponent.PropertyInfo = propertyInfo;
                 }
             });
         }

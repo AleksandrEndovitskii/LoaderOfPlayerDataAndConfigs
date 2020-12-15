@@ -76,8 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181fbbc53581e0341ab21d6f3ae61d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key: 
-  _value: 
 --- !u!114 &7554454186203741530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d275f5607140c7853714790e7aae9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _keyValueComponent: {fileID: 4157006772992888864}
+  _propertyInfoComponent: {fileID: 4157006772992888864}
 --- !u!114 &4971887399708122354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +154,19 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &5946079025818541748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126609439944175551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ecf198a2b3ffd4449b9b4d9f5dbaf96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _propertyInfoComponent: {fileID: 4157006772992888864}
 --- !u!114 &6770219445806606107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,32 +181,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
---- !u!114 &7261090533745199591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8126609439944175551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 469810157f8b4db6b6a6cf77c9cc6735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _keyValueComponent: {fileID: 4157006772992888864}
---- !u!114 &5946079025818541748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8126609439944175551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ecf198a2b3ffd4449b9b4d9f5dbaf96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _keyValueComponent: {fileID: 4157006772992888864}
 --- !u!1001 &1581471247006992974
 PrefabInstance:
   m_ObjectHideFlags: 0

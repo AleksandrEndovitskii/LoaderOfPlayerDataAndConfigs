@@ -7,29 +7,26 @@ using Zenject;
 namespace Components.Utils
 {
     [RequireComponent(typeof(TMP_InputField))]
-    public class ValueEditingInputFieldComponent : MonoBehaviour
+    public class PropertyInfoValueEditingInputFieldComponent : MonoBehaviour
     {
         [SerializeField]
-        private KeyValueComponent _keyValueComponent;
+        private PropertyInfoComponent propertyInfoComponent;
         private TMP_InputField _inputField;
         private PlayerDataService _playerDataService;
 
         [Inject]
-        public void Construct(PlayerDataService playerDataService)
+        public void Construct()
         {
             _inputField = this.gameObject.GetComponent<TMP_InputField>();
-
-            _playerDataService = playerDataService;
 
             _inputField.onEndEdit.AddListener(InputFieldOnEndEdit);
         }
 
         private void InputFieldOnEndEdit(string value)
         {
-            var type = _playerDataService.PlayerDataModel.Value.GetType();
-            var propertyInfo = type.GetProperty(_keyValueComponent.Key);
+            var propertyInfo = propertyInfoComponent.PropertyInfo;
             var convertedValue = Convert.ChangeType(value, propertyInfo.PropertyType);
-            propertyInfo.SetValue(_playerDataService.PlayerDataModel.Value, convertedValue);
+            propertyInfo.SetValue(propertyInfoComponent.Object, convertedValue);
         }
     }
 }
