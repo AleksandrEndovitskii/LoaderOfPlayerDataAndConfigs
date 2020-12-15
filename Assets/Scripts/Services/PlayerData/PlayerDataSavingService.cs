@@ -1,24 +1,21 @@
 ﻿using System.Reflection;
-using Models.PlayerData;
 using Zenject;
 
 namespace Services.PlayerData
 {
-    public class PlayerDataLoadingService : IPlayerDataLoadingService
+    public class PlayerDataSavingService : IPlayerDataSavingService
     {
         [Inject]
         private PlayerDataService _playerDataService;
 
-        public void Load()
+        public void Save()
         {
-            var playerDataModel = new PlayerDataModel();
+            var playerDataModel = _playerDataService.PlayerDataModel.Value;
             var propertyInfos = playerDataModel.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             foreach (var propertyInfo in propertyInfos)
             {
-                PropertyInfoExtensions.LoadFromPlayerPrefs(propertyInfo, playerDataModel);
+                PropertyInfoExtensions.SaveToPlayerPrefs(propertyInfo, playerDataModel);
             }
-
-            _playerDataService.PlayerDataModel.Value = playerDataModel;
         }
     }
 }

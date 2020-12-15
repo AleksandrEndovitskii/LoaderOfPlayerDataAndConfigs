@@ -10,6 +10,7 @@ namespace Installers
         {
             Container.BindInterfacesAndSelfTo<ConfigsLoadingService>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerDataLoadingService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerDataSavingService>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<ConfigsService>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerDataService>().AsSingle();

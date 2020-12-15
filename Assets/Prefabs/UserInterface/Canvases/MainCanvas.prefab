@@ -468,7 +468,7 @@ PrefabInstance:
     - target: {fileID: 5616748175730309346, guid: f287ebe9360bad549abd683e2e8d64a8,
         type: 3}
       propertyPath: m_ChildAlignment
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5616748175730309346, guid: f287ebe9360bad549abd683e2e8d64a8,
         type: 3}
@@ -493,12 +493,12 @@ PrefabInstance:
     - target: {fileID: 1573139293638357010, guid: b9cb7f0ba2e758d468103d99087f8711,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1573139293638357010, guid: b9cb7f0ba2e758d468103d99087f8711,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1573139293638357010, guid: b9cb7f0ba2e758d468103d99087f8711,
         type: 3}
@@ -573,7 +573,7 @@ PrefabInstance:
     - target: {fileID: 1573139293638357010, guid: b9cb7f0ba2e758d468103d99087f8711,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 320
+      value: 640
       objectReference: {fileID: 0}
     - target: {fileID: 1573139293638357010, guid: b9cb7f0ba2e758d468103d99087f8711,
         type: 3}
@@ -732,12 +732,12 @@ PrefabInstance:
     - target: {fileID: 5616748175730309346, guid: f287ebe9360bad549abd683e2e8d64a8,
         type: 3}
       propertyPath: m_ChildAlignment
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5616748175730309346, guid: f287ebe9360bad549abd683e2e8d64a8,
         type: 3}
       propertyPath: m_ChildControlHeight
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5616748175730309346, guid: f287ebe9360bad549abd683e2e8d64a8,
         type: 3}

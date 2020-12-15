@@ -1,5 +1,4 @@
-﻿using System;
-using Services.PlayerData;
+﻿using Services.PlayerData;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -24,9 +23,8 @@ namespace Components.Common.PropertyInfo
 
         private void InputFieldOnEndEdit(string value)
         {
-            var propertyInfo = propertyInfoComponent.PropertyInfo;
-            var convertedValue = Convert.ChangeType(value, propertyInfo.PropertyType);
-            propertyInfo.SetValue(propertyInfoComponent.Object, convertedValue);
+            PropertyInfoExtensions.SetValue(propertyInfoComponent.PropertyInfo, propertyInfoComponent.Object, value);
+            PropertyInfoExtensions.SaveToPlayerPrefs(propertyInfoComponent.PropertyInfo, propertyInfoComponent.Object);
         }
     }
 }

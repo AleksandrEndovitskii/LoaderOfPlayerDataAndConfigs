@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Configs
+namespace Components.PlayerData
 {
     public class PlayerDataContainerComponent : MonoBehaviour
     {
