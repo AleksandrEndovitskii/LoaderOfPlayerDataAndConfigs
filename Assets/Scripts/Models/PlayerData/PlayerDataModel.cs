@@ -82,7 +82,7 @@ namespace Models.PlayerData
                 var oldValue = "None";
                 if (PlayerPrefs.HasKey("Id"))
                 {
-                    oldValue = PlayerPrefs.GetInt("Id").ToString();
+                    oldValue = PlayerPrefs.GetString("Id");
                 }
                 Debug.Log($"Id changed from {oldValue} to {value}");
             };
@@ -91,7 +91,7 @@ namespace Models.PlayerData
                 var oldValue = "None";
                 if (PlayerPrefs.HasKey("CurrentLevel"))
                 {
-                    oldValue = PlayerPrefs.GetInt("CurrentLevel").ToString();
+                    oldValue = PlayerPrefs.GetString("CurrentLevel");
                 }
                 Debug.Log($"CurrentLevel changed from {oldValue} to {value}");
             };
@@ -100,7 +100,7 @@ namespace Models.PlayerData
                 var oldValue = "None";
                 if (PlayerPrefs.HasKey("MoneyAmount"))
                 {
-                    oldValue = PlayerPrefs.GetInt("MoneyAmount").ToString();
+                    oldValue = PlayerPrefs.GetString("MoneyAmount");
                 }
                 Debug.Log($"MoneyAmount changed from {oldValue} to {value}");
             };
