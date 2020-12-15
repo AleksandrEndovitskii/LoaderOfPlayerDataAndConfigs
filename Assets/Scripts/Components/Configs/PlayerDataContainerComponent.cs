@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using Components.Common.PropertyInfo;
 using Services.PlayerData;
 using UniRx;
@@ -11,7 +11,7 @@ namespace Components.Configs
     {
 #pragma warning disable 0649
         [SerializeField]
-        private PropertyInfoComponent propertyInfoComponentPrefab;
+        private PropertyInfoComponent _prefab;
 #pragma warning restore 0649
 
         [Inject]
@@ -24,22 +24,22 @@ namespace Components.Configs
         {
             _playerDataService = playerDataService;
 
-            _playerDataService.PlayerDataModel.Subscribe(playerDataModel =>
+            _playerDataService.PlayerDataModel.Subscribe(model =>
             {
-                if (playerDataModel == null)
+                if (model == null)
                 {
                     return;
                 }
 
                 this.gameObject.transform.DestroyAllChildren();
 
-                var propertyInfos = playerDataModel.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                var propertyInfos = model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
                 foreach (var propertyInfo in propertyInfos)
                 {
                     var propertyInfoComponent =  _container.InstantiatePrefab(
-                        propertyInfoComponentPrefab,
+                        _prefab,
                         this.gameObject.transform).GetComponent<PropertyInfoComponent>();
-                    propertyInfoComponent.Object = playerDataModel;
+                    propertyInfoComponent.Object = model;
                     propertyInfoComponent.PropertyInfo = propertyInfo;
                 }
             });

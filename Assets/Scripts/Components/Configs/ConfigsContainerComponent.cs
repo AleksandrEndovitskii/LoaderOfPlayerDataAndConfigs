@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System.Reflection;
+using Components.Common.PropertyInfo;
 using Services.Configs;
-using TMPro;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -11,8 +11,11 @@ namespace Components.Configs
     {
 #pragma warning disable 0649
         [SerializeField]
-        private TextMeshProUGUI _prefab;
+        private PropertyInfoComponent _prefab;
 #pragma warning restore 0649
+
+        [Inject]
+        readonly DiContainer _container = null;
 
         private ConfigsService _configsService;
 
@@ -21,23 +24,24 @@ namespace Components.Configs
         {
             _configsService = configsService;
 
-            _configsService.ConfigModel.Subscribe(configModel =>
+            _configsService.ConfigModel.Subscribe(model =>
             {
-                if (configModel == null)
+                if (model == null)
                 {
                     return;
                 }
 
                 this.gameObject.transform.DestroyAllChildren();
 
-                var playerMaxLevelInstance = Instantiate(_prefab, this.gameObject.transform);
-                playerMaxLevelInstance.text = configModel.PlayerMaxLevel.ToString();
-
-                var questIdsInstance = Instantiate(_prefab, this.gameObject.transform);
-                questIdsInstance.text = configModel.QuestIds.ToList().ToString<string>();
-
-                var shopItemIdsInstance = Instantiate(_prefab, this.gameObject.transform);
-                shopItemIdsInstance.text = configModel.ShopItemIds.ToList().ToString<string>();
+                var propertyInfos = model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                foreach (var propertyInfo in propertyInfos)
+                {
+                    var propertyInfoComponent =  _container.InstantiatePrefab(
+                        _prefab,
+                        this.gameObject.transform).GetComponent<PropertyInfoComponent>();
+                    propertyInfoComponent.Object = model;
+                    propertyInfoComponent.PropertyInfo = propertyInfo;
+                }
             });
         }
     }

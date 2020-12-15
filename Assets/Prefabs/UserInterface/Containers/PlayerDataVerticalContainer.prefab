@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8f88cdae090bd4db50ba924cc46561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  propertyInfoComponentPrefab: {fileID: 4157006772992888864, guid: 65276b85e63769d4f8207aa02c065372,
-    type: 3}
+  _prefab: {fileID: 4157006772992888864, guid: 65276b85e63769d4f8207aa02c065372, type: 3}
 --- !u!114 &894048480260999962
 MonoBehaviour:
   m_ObjectHideFlags: 0
