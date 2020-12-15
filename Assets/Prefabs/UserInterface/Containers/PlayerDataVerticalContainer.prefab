@@ -24,7 +24,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8f88cdae090bd4db50ba924cc46561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyValueComponentPrefab: {fileID: -4286797923526315639, guid: 65276b85e63769d4f8207aa02c065372,
+  keyValueComponentPrefab: {fileID: 4157006772992888864, guid: 65276b85e63769d4f8207aa02c065372,
     type: 3}
 --- !u!1001 &3109312928373829813
 PrefabInstance:
@@ -171,7 +171,7 @@ PrefabInstance:
     - target: {fileID: 5616748175730309344, guid: f287ebe9360bad549abd683e2e8d64a8,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5616748175730309344, guid: f287ebe9360bad549abd683e2e8d64a8,
         type: 3}
@@ -271,7 +271,7 @@ PrefabInstance:
     - target: {fileID: 5616748175730309345, guid: f287ebe9360bad549abd683e2e8d64a8,
         type: 3}
       propertyPath: m_Name
-      value: LoadPlayerDataVerticalContainer
+      value: PlayerDataVerticalContainer
       objectReference: {fileID: 0}
     - target: {fileID: 5616748175730309345, guid: f287ebe9360bad549abd683e2e8d64a8,
         type: 3}
