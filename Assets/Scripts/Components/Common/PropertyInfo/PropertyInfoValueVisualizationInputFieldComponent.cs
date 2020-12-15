@@ -1,4 +1,8 @@
-﻿using TMPro;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -28,7 +32,15 @@ namespace Components.Common.PropertyInfo
                 return;
             }
 
-            _inputField.text = propertyInfo.GetValue(_propertyInfoComponent.Object).ToString();
+            var value = propertyInfo.GetValue(_propertyInfoComponent.Object);
+            if (value is List<string> enumerable)
+            {
+                _inputField.text = ListExtensions.ToString(enumerable);
+            }
+            else
+            {
+                _inputField.text = value.ToString();
+            }
         }
     }
 }
