@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Utils
+namespace Components.Common.PropertyInfo
 {
     [RequireComponent(typeof(TMP_InputField))]
     public class PropertyInfoValueEditingInputFieldComponent : MonoBehaviour

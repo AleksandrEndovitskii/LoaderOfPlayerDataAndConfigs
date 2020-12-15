@@ -1,9 +1,8 @@
-﻿using System.Reflection;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Utils
+namespace Components.Common.PropertyInfo
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class PropertyInfoNameVisualizationTextComponent : MonoBehaviour
@@ -22,7 +21,7 @@ namespace Components.Utils
             _propertyInfoComponent.PropertyInfoChanged += PropertyInfoComponentOnPropertyInfoChanged;
         }
 
-        private void PropertyInfoComponentOnPropertyInfoChanged(PropertyInfo propertyInfo)
+        private void PropertyInfoComponentOnPropertyInfoChanged(System.Reflection.PropertyInfo propertyInfo)
         {
             if (propertyInfo == null)
             {

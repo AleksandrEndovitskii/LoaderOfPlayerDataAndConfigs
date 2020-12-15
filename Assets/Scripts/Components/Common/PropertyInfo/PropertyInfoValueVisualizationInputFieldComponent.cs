@@ -1,9 +1,8 @@
-﻿using System.Reflection;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Components.Utils
+namespace Components.Common.PropertyInfo
 {
     [RequireComponent(typeof(TMP_InputField))]
     public class PropertyInfoValueVisualizationInputFieldComponent : MonoBehaviour
@@ -22,7 +21,7 @@ namespace Components.Utils
             _propertyInfoComponent.PropertyInfoChanged += PropertyInfoComponentOnValueChanged;
         }
 
-        private void PropertyInfoComponentOnValueChanged(PropertyInfo propertyInfo)
+        private void PropertyInfoComponentOnValueChanged(System.Reflection.PropertyInfo propertyInfo)
         {
             if (propertyInfo == null)
             {

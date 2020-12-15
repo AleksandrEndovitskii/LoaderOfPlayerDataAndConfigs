@@ -1,5 +1,5 @@
-﻿using System.Reflection;
-using Components.Utils;
+using System.Reflection;
+using Components.Common.PropertyInfo;
 using Services.PlayerData;
 using UniRx;
 using UnityEngine;

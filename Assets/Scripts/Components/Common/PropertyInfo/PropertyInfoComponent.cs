@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Reflection;
 using UnityEngine;
 
-namespace Components.Utils
+namespace Components.Common.PropertyInfo
 {
     public class PropertyInfoComponent : MonoBehaviour
     {
         public Action<System.Object> ObjectChanged = delegate { };
-        public Action<PropertyInfo> PropertyInfoChanged = delegate { };
+        public Action<System.Reflection.PropertyInfo> PropertyInfoChanged = delegate { };
 
         public System.Object Object
         {
@@ -27,7 +26,7 @@ namespace Components.Utils
                 ObjectChanged.Invoke(_object);
             }
         }
-        public PropertyInfo PropertyInfo
+        public System.Reflection.PropertyInfo PropertyInfo
         {
             get
             {
@@ -47,6 +46,6 @@ namespace Components.Utils
         }
 
         private System.Object _object;
-        private PropertyInfo _propertyInfo;
+        private System.Reflection.PropertyInfo _propertyInfo;
     }
 }

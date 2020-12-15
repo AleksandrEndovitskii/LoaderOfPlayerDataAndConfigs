@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
-namespace Components.Utils
+namespace Components.Common.Button
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(UnityEngine.UI.Button))]
     public class ButtonComponent : MonoBehaviour
     {
-        private Button _button;
+        private UnityEngine.UI.Button _button;
 
         private void Awake()
         {
-            _button = this.gameObject.GetComponent<Button>();
+            _button = this.gameObject.GetComponent<UnityEngine.UI.Button>();
         }
         private void Start()
         {
