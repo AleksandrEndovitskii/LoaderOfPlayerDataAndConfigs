@@ -8,9 +8,9 @@ namespace Installers
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<ConfigsLoadingService>().AsSingle();
-            Container.BindInterfacesAndSelfTo<PlayerDataLoadingService>().AsSingle();
-            Container.BindInterfacesAndSelfTo<PlayerDataSavingService>().AsSingle();
+            Container.Bind<IConfigsLoadingService>().To<ResourcesConfigsLoadingService>().AsSingle();
+            Container.Bind<IPlayerDataLoadingService>().To<PlayerPrefsPlayerDataLoadingService>().AsSingle();
+            Container.Bind<IPlayerDataSavingService>().To<PlayerPrefsPlayerDataSavingService>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<ConfigsService>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerDataService>().AsSingle();

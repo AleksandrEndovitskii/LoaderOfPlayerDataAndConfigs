@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Services.Configs
 {
-    public class ConfigsLoadingService : IConfigsLoadingService
+    public class ResourcesConfigsLoadingService : IConfigsLoadingService
     {
         [Inject]
         private ConfigsService _configsService;
