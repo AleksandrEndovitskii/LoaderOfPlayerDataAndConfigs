@@ -1,4 +1,6 @@
-﻿using Models.PlayerData;
+﻿using System;
+using System.Reflection;
+using Models.PlayerData;
 using UnityEngine;
 using Zenject;
 
@@ -11,14 +13,29 @@ namespace Services.PlayerData
 
         public void Load()
         {
-            var defaultPlayerDataModel = new PlayerDataModel(1, 1, 1);
-
-            var id = PlayerPrefs.GetInt("Id", defaultPlayerDataModel.Id.Value);
-            var currentLevel = PlayerPrefs.GetInt("CurrentLevel", defaultPlayerDataModel.CurrentLevel.Value);
-            var moneyAmount = PlayerPrefs.GetInt("MoneyAmount", defaultPlayerDataModel.MoneyAmount.Value);
-            var playerDataModel = new PlayerDataModel(id, currentLevel, moneyAmount);
+            var playerDataModel = new PlayerDataModel();
+            var propertyInfos = playerDataModel.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            foreach (var propertyInfo in propertyInfos)
+            {
+                var defaultValue = 1;//(int) GetDefaultValue(propertyInfo.PropertyType);
+                var value = PlayerPrefs.GetInt(propertyInfo.Name, defaultValue);
+                SetValue(propertyInfo, playerDataModel, value);
+            }
 
             _playerDataService.PlayerDataModel.Value = playerDataModel;
+        }
+
+        private void SetValue(PropertyInfo propertyInfo, object instance, object value)
+        {
+            propertyInfo.SetValue(instance, Convert.ChangeType(value, propertyInfo.PropertyType));
+        }
+
+        private object GetDefaultValue(Type t)
+        {
+            if (t.IsValueType)
+                return Activator.CreateInstance(t);
+
+            return null;
         }
     }
 }

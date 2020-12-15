@@ -1,5 +1,6 @@
-﻿using Services.PlayerData;
-using TMPro;
+﻿using System.Reflection;
+using Components.Utils;
+using Services.PlayerData;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -10,8 +11,11 @@ namespace Components.Configs
     {
 #pragma warning disable 0649
         [SerializeField]
-        private TextMeshProUGUI _prefab;
+        private KeyValueComponent keyValueComponentPrefab;
 #pragma warning restore 0649
+
+        [Inject]
+        readonly DiContainer _container = null;
 
         private PlayerDataService _playerDataService;
 
@@ -29,14 +33,13 @@ namespace Components.Configs
 
                 this.gameObject.transform.DestroyAllChildren();
 
-                var idInstance = Instantiate(_prefab, this.gameObject.transform);
-                idInstance.text = playerDataModel.Id.ToString();
-
-                var currentLevelInstance = Instantiate(_prefab, this.gameObject.transform);
-                currentLevelInstance.text = playerDataModel.CurrentLevel.ToString();
-
-                var moneyAmountInstance = Instantiate(_prefab, this.gameObject.transform);
-                moneyAmountInstance.text = playerDataModel.MoneyAmount.ToString();
+                var propertyInfos = playerDataModel.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                foreach (var propertyInfo in propertyInfos)
+                {
+                    var keyValueComponentInstance =  _container.InstantiatePrefab(keyValueComponentPrefab, this.gameObject.transform).GetComponent<KeyValueComponent>();
+                    keyValueComponentInstance.Key = propertyInfo.Name;
+                    keyValueComponentInstance.Value = propertyInfo.GetValue(playerDataModel).ToString();
+                }
             });
         }
     }
