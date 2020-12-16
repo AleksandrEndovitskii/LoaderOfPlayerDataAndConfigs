@@ -6,7 +6,6 @@ public static class PropertyInfoExtensions
 {
     public static void SetValue(this PropertyInfo propertyInfo, object obj, object value)
     {
-        //var defaultValue = GetDefaultValue(value.GetType());
         var convertedValue = Convert.ChangeType(value, propertyInfo.PropertyType);
         propertyInfo.SetValue(obj, convertedValue);
     }
@@ -30,7 +29,8 @@ public static class PropertyInfoExtensions
             return;
         }
         var value = propertyInfo.GetValue(obj);
-        PlayerPrefs.SetString(propertyInfo.Name, value.ToString());
+        var key = obj.GetType().Name + "_" + propertyInfo.Name;
+        PlayerPrefs.SetString(key, value.ToString());
     }
     public static void LoadFromPlayerPrefs(PropertyInfo propertyInfo, System.Object obj)
     {
@@ -43,7 +43,8 @@ public static class PropertyInfoExtensions
             return;
         }
         var defaultValue = GetDefaultValue(propertyInfo.PropertyType);
-        var value = PlayerPrefs.GetString(propertyInfo.Name, defaultValue.ToString());
+        var key = obj.GetType().Name + "_" + propertyInfo.Name;
+        var value = PlayerPrefs.GetString(key, defaultValue.ToString());
         SetValue(propertyInfo, obj, value);
     }
 }
