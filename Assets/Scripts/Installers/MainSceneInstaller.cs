@@ -1,4 +1,5 @@
-﻿using Services.Configs;
+﻿using Common;
+using Services.Configs;
 using Services.PlayerData;
 using Zenject;
 
@@ -8,6 +9,8 @@ namespace Installers
     {
         public override void InstallBindings()
         {
+            Container.Bind<FooMonoBehaviour>().FromNewComponentOnNewGameObject().WithGameObjectName("FooGameObject").AsSingle();
+
             Container.Bind<IConfigsLoadingService>().To<ResourcesConfigsLoadingService>().AsSingle();
             Container.Bind<IPlayerDataLoadingService>().To<PlayerPrefsPlayerDataLoadingService>().AsSingle();
             Container.Bind<IPlayerDataSavingService>().To<PlayerPrefsPlayerDataSavingService>().AsSingle();
