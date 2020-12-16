@@ -11,7 +11,7 @@ namespace Installers
         {
             Container.Bind<FooMonoBehaviour>().FromNewComponentOnNewGameObject().WithGameObjectName("FooGameObject").AsSingle();
 
-            Container.Bind<IConfigsLoadingService>().To<URLConfigsLoadingService>().AsSingle();
+            Container.Bind<IConfigsLoadingService>().To<StreamingAssetsConfigsLoadingService>().AsSingle();
             Container.Bind<IPlayerDataLoadingService>().To<PlayerPrefsPlayerDataLoadingService>().AsSingle();
             Container.Bind<IPlayerDataSavingService>().To<PlayerPrefsPlayerDataSavingService>().AsSingle();
 
