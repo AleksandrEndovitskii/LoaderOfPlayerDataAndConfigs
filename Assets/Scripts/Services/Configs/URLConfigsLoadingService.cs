@@ -16,19 +16,21 @@ namespace Services.Configs
         [Inject]
         private FooMonoBehaviour _fooMonoBehaviour;
 
-        private string url = "http://localhost:3000/Configs.json"; //TODO: add correct server ulr here
+        protected string _fileName = "Configs.json";
 
-        public void Load()
+        protected string _url = "http://localhost:3000/Configs.json"; //TODO: add correct server ulr here
+
+        public virtual void Load()
         {
-            Debug.Log($"Configs loading started");
+            Debug.Log($"Configs loading started from {_url}");
 
-            _fooMonoBehaviour.StartCoroutine(GetRequest(url, request =>
+            _fooMonoBehaviour.StartCoroutine(GetRequest(_url, request =>
             {
                 HandleResponse(request, Parse);
             }));
         }
 
-        private IEnumerator GetRequest(string endpoint, Action<UnityWebRequest> callback)
+        protected IEnumerator GetRequest(string endpoint, Action<UnityWebRequest> callback)
         {
             using (var request = UnityWebRequest.Get(endpoint))
             {
@@ -39,7 +41,7 @@ namespace Services.Configs
             }
         }
 
-        private void HandleResponse(UnityWebRequest unityWebRequest, Action<string> callback)
+        protected void HandleResponse(UnityWebRequest unityWebRequest, Action<string> callback)
         {
             if (unityWebRequest.isNetworkError || unityWebRequest.isHttpError)
             {
@@ -56,7 +58,7 @@ namespace Services.Configs
             }
         }
 
-        private void Parse(string jsonString)
+        protected void Parse(string jsonString)
         {
             var jsonObject = JObject.Parse(jsonString);
             var configModel = jsonObject.ParseTo<ConfigModel>();
