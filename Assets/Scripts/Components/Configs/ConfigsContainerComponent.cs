@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using Components.Common.PropertyInfo;
 using Services.Configs;
 using UniRx;
@@ -9,10 +9,8 @@ namespace Components.Configs
 {
     public class ConfigsContainerComponent : MonoBehaviour
     {
-#pragma warning disable 0649
         [SerializeField]
         private PropertyInfoComponent _propertyInfoComponentPrefab;
-#pragma warning restore 0649
 
         [Inject]
         readonly DiContainer _container = null;
