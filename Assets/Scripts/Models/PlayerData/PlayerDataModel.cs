@@ -21,6 +21,8 @@ namespace Models.PlayerData
                     return;
                 }
 
+                Debug.Log($"Id changed from {_id} to {value}");
+
                 _id = value;
 
                 IdChanged.Invoke(_id);
@@ -39,6 +41,8 @@ namespace Models.PlayerData
                     return;
                 }
 
+                Debug.Log($"CurrentLevel changed from {_currentLevel} to {value}");
+
                 _currentLevel = value;
 
                 CurrentLevelChanged.Invoke(_currentLevel);
@@ -56,6 +60,8 @@ namespace Models.PlayerData
                 {
                     return;
                 }
+
+                Debug.Log($"MoneyAmount changed from {_moneyAmount} to {value}");
 
                 _moneyAmount = value;
 
@@ -77,33 +83,7 @@ namespace Models.PlayerData
 
         public PlayerDataModel()
         {
-            IdChanged += value =>
-            {
-                var oldValue = "None";
-                if (PlayerPrefs.HasKey("Id"))
-                {
-                    oldValue = PlayerPrefs.GetString("Id");
-                }
-                Debug.Log($"Id changed from {oldValue} to {value}");
-            };
-            CurrentLevelChanged += value =>
-            {
-                var oldValue = "None";
-                if (PlayerPrefs.HasKey("CurrentLevel"))
-                {
-                    oldValue = PlayerPrefs.GetString("CurrentLevel");
-                }
-                Debug.Log($"CurrentLevel changed from {oldValue} to {value}");
-            };
-            MoneyAmountChanged += value =>
-            {
-                var oldValue = "None";
-                if (PlayerPrefs.HasKey("MoneyAmount"))
-                {
-                    oldValue = PlayerPrefs.GetString("MoneyAmount");
-                }
-                Debug.Log($"MoneyAmount changed from {oldValue} to {value}");
-            };
+
         }
     }
 }
