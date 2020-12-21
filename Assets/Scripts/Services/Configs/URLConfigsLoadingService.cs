@@ -22,11 +22,13 @@ namespace Services.Configs
 
         public virtual void Load()
         {
-            Debug.Log($"Configs loading started from {_url}");
+            Debug.Log($"Loading of Configs from {_url} started");
 
             _fooMonoBehaviour.StartCoroutine(GetRequest(_url, request =>
             {
                 HandleResponse(request, Parse);
+
+                Debug.Log($"Loading of Configs from {_url} finished");
             }));
         }
 
@@ -34,8 +36,12 @@ namespace Services.Configs
         {
             using (var request = UnityWebRequest.Get(endpoint))
             {
+                Debug.Log($"Sending of GetRequest to {endpoint} started");
+
                 // Send the request and wait for a response
                 yield return request.SendWebRequest();
+
+                Debug.Log($"Sending of GetRequest to {endpoint} finished");
 
                 callback(request);
             }
@@ -43,15 +49,19 @@ namespace Services.Configs
 
         protected void HandleResponse(UnityWebRequest unityWebRequest, Action<string> callback)
         {
+            Debug.Log($"Handling of web response started");
+
             if (unityWebRequest.isNetworkError || unityWebRequest.isHttpError)
             {
-                Debug.Log("Error " + unityWebRequest.error);
+                Debug.Log($"Handling of web response finished with error {unityWebRequest.error}");
             }
             else
             {
                 if (unityWebRequest.isDone)
                 {
                     var jsonString = System.Text.Encoding.UTF8.GetString(unityWebRequest.downloadHandler.data);
+
+                    Debug.Log($"Handling of web response finished");
 
                     callback(jsonString);
                 }
@@ -60,10 +70,12 @@ namespace Services.Configs
 
         protected void Parse(string jsonString)
         {
+            Debug.Log($"Parsing of jsonString {jsonString} started");
+
             var jsonObject = JObject.Parse(jsonString);
             var configModel = jsonObject.ParseTo<ConfigModel>();
 
-            Debug.Log($"Configs loading finished");
+            Debug.Log($"Parsing of jsonString {jsonString} finished");
 
             _configsService.ConfigModel.Value = configModel;
         }

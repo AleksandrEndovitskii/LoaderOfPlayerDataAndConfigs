@@ -7,19 +7,23 @@ namespace Services.Configs
     {
         public override void Load()
         {
+            Debug.Log($"Loading of Configs from StreamingAssets started");
+
             var path = GetPathToFileInStreamingAssets(_fileName);
             if (string.IsNullOrEmpty(path))
             {
-                Debug.LogError($"No file with name {_fileName} was found in streaming assets");
+                Debug.LogError($"No file with name {_fileName} was found in StreamingAssets");
 
                 return;
             }
 
-            Debug.Log($"File with name {_fileName} was found in streaming assets by path: {path}");
+            Debug.Log($"File with name {_fileName} was found in StreamingAssets by path: {path}");
 
             _url = path;
 
             base.Load();
+
+            Debug.Log($"Loading of Configs from Resources finished");
         }
 
         private string GetPathToFileInStreamingAssets(string fileName)

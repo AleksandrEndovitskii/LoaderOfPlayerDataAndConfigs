@@ -12,14 +12,14 @@ namespace Services.Configs
 
         public void Load()
         {
-            Debug.Log($"Configs loading started");
+            Debug.Log($"Loading of Configs from Resources started");
 
             var configsTextAsset = Resources.Load<TextAsset>("Configs");
             var jsonString = configsTextAsset.text;
             var jsonObject = JObject.Parse(jsonString);
             var configModel = jsonObject.ParseTo<ConfigModel>();
 
-            Debug.Log($"Configs loading finished");
+            Debug.Log($"Loading of Configs from Resources finished");
 
             _configsService.ConfigModel.Value = configModel;
         }
