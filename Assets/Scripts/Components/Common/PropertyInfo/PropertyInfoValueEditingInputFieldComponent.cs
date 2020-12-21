@@ -1,5 +1,4 @@
-﻿using Services.PlayerData;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -11,7 +10,6 @@ namespace Components.Common.PropertyInfo
         [SerializeField]
         private PropertyInfoComponent propertyInfoComponent;
         private TMP_InputField _inputField;
-        private PlayerDataService _playerDataService;
 
         [Inject]
         public void Construct()
