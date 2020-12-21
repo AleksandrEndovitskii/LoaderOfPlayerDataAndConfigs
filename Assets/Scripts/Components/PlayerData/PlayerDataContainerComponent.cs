@@ -11,7 +11,7 @@ namespace Components.PlayerData
     {
 #pragma warning disable 0649
         [SerializeField]
-        private PropertyInfoComponent _prefab;
+        private PropertyInfoComponent _propertyInfoComponentPrefab;
 #pragma warning restore 0649
 
         [Inject]
@@ -36,11 +36,11 @@ namespace Components.PlayerData
                 var propertyInfos = model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
                 foreach (var propertyInfo in propertyInfos)
                 {
-                    var propertyInfoComponent =  _container.InstantiatePrefab(
-                        _prefab,
+                    var propertyInfoComponentInstance =  _container.InstantiatePrefab(
+                        _propertyInfoComponentPrefab,
                         this.gameObject.transform).GetComponent<PropertyInfoComponent>();
-                    propertyInfoComponent.Object = model;
-                    propertyInfoComponent.PropertyInfo = propertyInfo;
+                    propertyInfoComponentInstance.Object = model;
+                    propertyInfoComponentInstance.PropertyInfo = propertyInfo;
                 }
             });
         }
