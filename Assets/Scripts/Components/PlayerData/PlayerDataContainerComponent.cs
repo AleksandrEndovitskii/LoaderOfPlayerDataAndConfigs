@@ -14,14 +14,14 @@ namespace Components.PlayerData
         private PropertyInfoComponent _propertyInfoComponentPrefab;
 #pragma warning restore 0649
 
-        [Inject]
-        readonly DiContainer _container = null;
+        private DiContainer _diContainer;
 
         private PlayerDataService _playerDataService;
 
         [Inject]
-        public void Construct(PlayerDataService playerDataService)
+        public void Construct(DiContainer diContainer, PlayerDataService playerDataService)
         {
+            _diContainer = diContainer;
             _playerDataService = playerDataService;
 
             _playerDataService.PlayerDataModel.Subscribe(model =>
@@ -36,7 +36,7 @@ namespace Components.PlayerData
                 var propertyInfos = model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
                 foreach (var propertyInfo in propertyInfos)
                 {
-                    var propertyInfoComponentInstance =  _container.InstantiatePrefab(
+                    var propertyInfoComponentInstance =  _diContainer.InstantiatePrefab(
                         _propertyInfoComponentPrefab,
                         this.gameObject.transform).GetComponent<PropertyInfoComponent>();
                     propertyInfoComponentInstance.Object = model;
