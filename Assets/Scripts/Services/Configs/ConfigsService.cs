@@ -12,16 +12,16 @@ namespace Services.Configs
         [Inject]
         public void Construct()
         {
-            Debug.Log($"Configs service initialization started");
+            Debug.Log($"{GetType().Name} initialization started");
 
             ConfigModel = new ReactiveProperty<ConfigModel>();
 
             ConfigModel.Subscribe(configModel =>
             {
-                Debug.Log($"Config model changed");
+                Debug.Log($"{nameof(configModel)} changed");
             });
 
-            Debug.Log($"Configs service initialization finished");
+            Debug.Log($"{GetType().Name} initialization finished");
         }
     }
 }

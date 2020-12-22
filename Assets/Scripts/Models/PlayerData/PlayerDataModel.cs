@@ -21,7 +21,7 @@ namespace Models.PlayerData
                     return;
                 }
 
-                Debug.Log($"Id changed from {_id} to {value}");
+                Debug.Log($"{GetType().Name}.{ReflectionExtensions.GetCallerName()} changed from {_id} to {value}");
 
                 _id = value;
 
@@ -41,7 +41,7 @@ namespace Models.PlayerData
                     return;
                 }
 
-                Debug.Log($"CurrentLevel changed from {_currentLevel} to {value}");
+                Debug.Log($"{GetType().Name}.{ReflectionExtensions.GetCallerName()} changed from {_currentLevel} to {value}");
 
                 _currentLevel = value;
 
@@ -61,7 +61,7 @@ namespace Models.PlayerData
                     return;
                 }
 
-                Debug.Log($"MoneyAmount changed from {_moneyAmount} to {value}");
+                Debug.Log($"{GetType().Name}.{ReflectionExtensions.GetCallerName()} changed from {_moneyAmount} to {value}");
 
                 _moneyAmount = value;
 

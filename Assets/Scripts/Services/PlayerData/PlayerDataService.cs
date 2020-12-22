@@ -12,16 +12,16 @@ namespace Services.PlayerData
         [Inject]
         public void Construct()
         {
-            Debug.Log($"Player data service initialization started");
+            Debug.Log($"{GetType().Name} initialization started");
 
             PlayerDataModel = new ReactiveProperty<PlayerDataModel>();
 
             PlayerDataModel.Subscribe(playerDataModel =>
             {
-                Debug.Log($"Player data model changed");
+                Debug.Log($"{nameof(playerDataModel)} changed");
             });
 
-            Debug.Log($"Player data service initialization finished");
+            Debug.Log($"{GetType().Name} initialization finished");
         }
     }
 }
