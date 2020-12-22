@@ -5,9 +5,8 @@ namespace Models.PlayerData
 {
     public class PlayerDataModel
     {
-        public Action<int> IdChanged = delegate { };
-        public Action<int> CurrentLevelChanged = delegate { };
-        public Action<int> MoneyAmountChanged = delegate { };
+        public Action<string, string, string> ValueChanged = delegate { };
+
         public int Id
         {
             get
@@ -21,11 +20,9 @@ namespace Models.PlayerData
                     return;
                 }
 
-                Debug.Log($"{GetType().Name}.{ReflectionExtensions.GetCallerName()} changed from {_id} to {value}");
+                ValueChanged.Invoke(ReflectionExtensions.GetCallerName(), _id.ToString(), value.ToString());
 
                 _id = value;
-
-                IdChanged.Invoke(_id);
             }
         }
         public int CurrentLevel
@@ -41,11 +38,9 @@ namespace Models.PlayerData
                     return;
                 }
 
-                Debug.Log($"{GetType().Name}.{ReflectionExtensions.GetCallerName()} changed from {_currentLevel} to {value}");
+                ValueChanged.Invoke(ReflectionExtensions.GetCallerName(), _currentLevel.ToString(), value.ToString());
 
                 _currentLevel = value;
-
-                CurrentLevelChanged.Invoke(_currentLevel);
             }
         }
         public int MoneyAmount
@@ -61,11 +56,9 @@ namespace Models.PlayerData
                     return;
                 }
 
-                Debug.Log($"{GetType().Name}.{ReflectionExtensions.GetCallerName()} changed from {_moneyAmount} to {value}");
+                ValueChanged.Invoke(ReflectionExtensions.GetCallerName(), _moneyAmount.ToString(), value.ToString());
 
                 _moneyAmount = value;
-
-                MoneyAmountChanged.Invoke(_moneyAmount);
             }
         }
 
@@ -83,7 +76,10 @@ namespace Models.PlayerData
 
         public PlayerDataModel()
         {
-
+            ValueChanged += (name, previousValue, currentValue) =>
+            {
+                Debug.Log($"{GetType().Name}.{ReflectionExtensions.GetCallerName()} changed from {previousValue} to {currentValue}");
+            };
         }
     }
 }
