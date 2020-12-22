@@ -9,10 +9,8 @@ namespace Components.PlayerData
 {
     public class PlayerDataContainerComponent : MonoBehaviour
     {
-#pragma warning disable 0649
         [SerializeField]
         private PropertyInfoComponent _propertyInfoComponentPrefab;
-#pragma warning restore 0649
 
         private DiContainer _diContainer;
 
