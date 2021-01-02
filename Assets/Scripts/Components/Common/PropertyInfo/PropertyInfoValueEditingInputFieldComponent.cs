@@ -22,7 +22,6 @@ namespace Components.Common.PropertyInfo
         private void InputFieldOnEndEdit(string value)
         {
             PropertyInfoExtensions.SetValue(propertyInfoComponent.PropertyInfo, propertyInfoComponent.Object, value);
-            PropertyInfoExtensions.SaveToPlayerPrefs(propertyInfoComponent.PropertyInfo, propertyInfoComponent.Object);
         }
     }
 }

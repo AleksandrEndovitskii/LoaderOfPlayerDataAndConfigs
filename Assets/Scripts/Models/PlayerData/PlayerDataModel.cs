@@ -1,11 +1,12 @@
 ﻿using System;
+using Services.PlayerData;
 using UnityEngine;
 
 namespace Models.PlayerData
 {
     public class PlayerDataModel
     {
-        public Action<string, string, string> ValueChanged = delegate { };
+        public Action<string, string, string> PropertyValueChanged = delegate { };
 
         public int Id
         {
@@ -20,7 +21,7 @@ namespace Models.PlayerData
                     return;
                 }
 
-                ValueChanged.Invoke(ReflectionExtensions.GetCallerName(), _id.ToString(), value.ToString());
+                PropertyValueChanged.Invoke(ReflectionExtensions.GetCallerName(), _id.ToString(), value.ToString());
 
                 _id = value;
             }
@@ -38,7 +39,7 @@ namespace Models.PlayerData
                     return;
                 }
 
-                ValueChanged.Invoke(ReflectionExtensions.GetCallerName(), _currentLevel.ToString(), value.ToString());
+                PropertyValueChanged.Invoke(ReflectionExtensions.GetCallerName(), _currentLevel.ToString(), value.ToString());
 
                 _currentLevel = value;
             }
@@ -56,7 +57,7 @@ namespace Models.PlayerData
                     return;
                 }
 
-                ValueChanged.Invoke(ReflectionExtensions.GetCallerName(), _moneyAmount.ToString(), value.ToString());
+                PropertyValueChanged.Invoke(ReflectionExtensions.GetCallerName(), _moneyAmount.ToString(), value.ToString());
 
                 _moneyAmount = value;
             }
@@ -66,19 +67,17 @@ namespace Models.PlayerData
         private int _currentLevel;
         private int _moneyAmount;
 
-        public PlayerDataModel(int id, int currentLevel, int moneyAmount) :
-            base()
-        {
-            Id = id;
-            CurrentLevel = currentLevel;
-            MoneyAmount = moneyAmount;
-        }
+        private IPlayerDataSavingService _playerDataSavingService;
 
-        public PlayerDataModel()
+        public PlayerDataModel(IPlayerDataSavingService playerDataSavingService)
         {
-            ValueChanged += (name, previousValue, currentValue) =>
+            _playerDataSavingService = playerDataSavingService;
+
+            PropertyValueChanged += (propertyName, previousValue, currentValue) =>
             {
-                Debug.Log($"{GetType().Name}.{ReflectionExtensions.GetCallerName()} changed from {previousValue} to {currentValue}");
+                Debug.Log($"{GetType().Name}.{propertyName} changed from {previousValue} to {currentValue}");
+
+                _playerDataSavingService.Save();
             };
         }
     }
