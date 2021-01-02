@@ -10,11 +10,14 @@ namespace Services.PlayerData
         public ReactiveProperty<PlayerDataModel> PlayerDataModel { get; private set; }
 
         [Inject]
-        public void Construct()
+        public void Construct(IPlayerDataSavingService playerDataSavingService)
         {
             Debug.Log($"{GetType().Name} initialization started");
 
-            PlayerDataModel = new ReactiveProperty<PlayerDataModel>();
+            PlayerDataModel = new ReactiveProperty<PlayerDataModel>
+            {
+                Value = new PlayerDataModel(playerDataSavingService)
+            };
 
             PlayerDataModel.Subscribe(playerDataModel =>
             {
