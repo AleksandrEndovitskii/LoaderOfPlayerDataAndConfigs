@@ -51,7 +51,8 @@ namespace Services.Configs
         {
             Debug.Log($"Handling of web response started");
 
-            if (unityWebRequest.isNetworkError || unityWebRequest.isHttpError)
+            if (unityWebRequest.result == UnityWebRequest.Result.ConnectionError ||
+                unityWebRequest.result == UnityWebRequest.Result.ProtocolError)
             {
                 Debug.Log($"Handling of web response finished with error {unityWebRequest.error}");
             }
