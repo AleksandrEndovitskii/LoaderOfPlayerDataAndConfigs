@@ -21,9 +21,10 @@ namespace Models.PlayerData
                     return;
                 }
 
-                PropertyValueChanged.Invoke(ReflectionExtensions.GetCallerName(), _id.ToString(), value.ToString());
-
+                var previousValue = _id;
                 _id = value;
+                PropertyValueChanged.Invoke(ReflectionExtensions.GetCallerName(),
+                    previousValue.ToString(), _id.ToString());
             }
         }
         public int CurrentLevel
@@ -39,9 +40,10 @@ namespace Models.PlayerData
                     return;
                 }
 
-                PropertyValueChanged.Invoke(ReflectionExtensions.GetCallerName(), _currentLevel.ToString(), value.ToString());
-
+                var previousValue = _currentLevel;
                 _currentLevel = value;
+                PropertyValueChanged.Invoke(ReflectionExtensions.GetCallerName(),
+                    previousValue.ToString(), _currentLevel.ToString());
             }
         }
         public int MoneyAmount
@@ -57,9 +59,10 @@ namespace Models.PlayerData
                     return;
                 }
 
-                PropertyValueChanged.Invoke(ReflectionExtensions.GetCallerName(), _moneyAmount.ToString(), value.ToString());
-
+                var previousValue = _moneyAmount;
                 _moneyAmount = value;
+                PropertyValueChanged.Invoke(ReflectionExtensions.GetCallerName(),
+                    previousValue.ToString(), _moneyAmount.ToString());
             }
         }
 
