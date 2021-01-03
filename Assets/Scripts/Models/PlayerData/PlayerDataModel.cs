@@ -77,7 +77,8 @@ namespace Models.PlayerData
             {
                 Debug.Log($"{GetType().Name}.{propertyName} changed from {previousValue} to {currentValue}");
 
-                _playerDataSavingService.Save();
+                var propertyInfo = GetType().GetProperty(propertyName);
+                _playerDataSavingService.Save(propertyInfo, this);
             };
         }
     }

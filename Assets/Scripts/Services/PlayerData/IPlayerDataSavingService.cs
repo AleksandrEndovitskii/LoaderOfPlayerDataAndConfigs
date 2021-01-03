@@ -1,7 +1,10 @@
-﻿namespace Services.PlayerData
+﻿using System.Reflection;
+using Models.PlayerData;
+
+namespace Services.PlayerData
 {
     public interface IPlayerDataSavingService
     {
-        void Save();
+        void Save(PropertyInfo propertyInfo, PlayerDataModel playerDataModel);
     }
 }

@@ -1,26 +1,18 @@
 ﻿using System.Reflection;
+using Models.PlayerData;
 using UnityEngine;
-using Zenject;
 
 namespace Services.PlayerData
 {
     public class PlayerPrefsPlayerDataSavingService : IPlayerDataSavingService
     {
-        [Inject]
-        private PlayerDataService _playerDataService;
-
-        public void Save()
+        public void Save(PropertyInfo propertyInfo, PlayerDataModel playerDataModel)
         {
-            Debug.Log($"Saving of PlayerData from PlayerPrefs started");
+            Debug.Log($"Saving of key({propertyInfo.Name}) with value({playerDataModel}) started");
 
-            var playerDataModel = _playerDataService.PlayerDataModel.Value;
-            var propertyInfos = playerDataModel.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            foreach (var propertyInfo in propertyInfos)
-            {
-                PropertyInfoExtensions.SaveToPlayerPrefs(propertyInfo, playerDataModel);
-            }
+            PropertyInfoExtensions.SaveToPlayerPrefs(propertyInfo, playerDataModel);
 
-            Debug.Log($"Saving of PlayerData from PlayerPrefs finished");
+            Debug.Log($"Saving of key({propertyInfo.Name}) with value({playerDataModel}) finished");
         }
     }
 }
