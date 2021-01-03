@@ -23,7 +23,7 @@ namespace Services.Configs
 
             base.Load();
 
-            Debug.Log($"Loading of Configs from Resources finished");
+            Debug.Log($"Loading of Configs from StreamingAssets finished");
         }
 
         private string GetPathToFileInStreamingAssets(string fileName)
